@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+   <div class="formcont">
+    <form onsubmit="return validation()" action="demo.html">
+        <div class="name">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="fname"><br>
+            <small id="error-name" style="visibility: hidden;color: red; font-size: 18px;">Name is mandatory</small>
+        </div>
+        <div class="phone">
+            <label for="phone">Phone no</label>
+            <input type="number" name="phone" id="phone"><br>
+            <small id="error-phone1" style="visibility: hidden;color: red;font-size: 18px">Phone number is mandatory</small><br>
+            <small id="error-phone2" style="visibility: hidden;color: red;font-size: 18px">Invalid phone number</small>
+        </div>
+        <div class="DOB">
+            <label for="phone">DOB</label>
+            <input type="date" name="phone">
+        </div>
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+            <br>
+            <small id="error-email1" style="visibility: hidden;color: red;font-size: 18px">Email is mandatory</small><br>
+            <small id="error-email2" style="visibility: hidden;color: red;font-size: 18px">Invalid email</small>
+        </div>
+        <div class="pass">
+            <label for="pass">Password</label>
+            <input type="text" nmae="pass" id="pass">
+            <br>
+            <small id="error-pass1" style="visibility: hidden;color: red;font-size: 18px">Password is mandatory</small><br>
+            <small id="error-pass2" style="visibility: hidden;color: red;font-size: 18px">Invalid Password</small>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+   </div>
+</body>
+<script src="jquery-3.7.1.min.js"></script>
+<script src="jquery-validation-1.19.5/dist/jquery.validate.js"></script>
+<script>
+    function validation() {
+        let name = $("#fname").val();
+        let ans1;
+        if (name == "") {
+            $("#error-name").css("visibility", "visible");
+            ans1 = false;
+        }
+        else {
+            $("#error-name").css("visibility", "hidden");
+            ans1 = true;
+
+        }
+
+
+        let phone = $("#phone").val();
+        let ans2;
+        let phonepattern = /^[6-9]{1}[0-9]{9}$/;
+        if (phone == "") {
+            $("#error-phone1").css("visibility", "visible");
+            ans2 = false;
+        }
+        else {
+            if (phonepattern.test(phone)) {
+                $("#error-phone1").css("visibility", "hidden");
+                $("#error-phone2").css("visibility", "hidden");
+                ans2 = true;
+
+
+
+            }
+            else {
+                $("#error-phone1").css("visibility", "hidden");
+                $("#error-phone2").css("visibility", "visible");
+                ans2 = false;
+
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+        let email = $("#email").val();
+        let ans3;
+        let emailpattern = /^[a-z 0-9]+@[a-z]+\.[a-z]+$/;
+        if (email == "") {
+            $("#error-email1").css("visibility", "visible");
+            ans3 = false;
+        }
+        else {
+            if (emailpattern.test(email)) {
+                $("#error-email1").css("visibility", "hidden");
+                $("#error-email2").css("visibility", "hidden");
+                ans3 = true;
+
+
+
+            }
+            else {
+                $("#error-email1").css("visibility", "hidden");
+                $("#error-email2").css("visibility", "visible");
+                ans3 = false;
+
+
+            }
+
+
+        }
+
+
+
+        let pass = $("#pass").val();
+    let ans4;
+    let passpattern =/^[a-z A-Z 0-9 !@#\$\^\*]{8,}$/ ;
+
+    if (pass === "") {
+        $("#error-pass1").css("visibility", "visible");
+        ans4 = false;
+    } else {
+        if (passpattern.test(pass)) {
+            $("#error-pass1").css("visibility", "hidden");
+            $("#error-pass2").css("visibility", "hidden");
+            ans4 = true;
+        } else {
+            $("#error-pass1").css("visibility", "hidden");
+            $("#error-pass2").css("visibility", "visible");
+            ans4 = false;
+        }
+    }
+        return ans4;
+        if (ans1 == true && ans2 == true && ans3 == true && ans4 == true) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }
+</script>
+
+</html>
